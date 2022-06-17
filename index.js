@@ -166,9 +166,26 @@ console.log(lambdasian1.speak());
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
 
-class Instructor {
+class Instructor extends Lambdasian {
+  constructor(obj){
+    super(obj);
+    this.specialty = obj.specialty;
+    this.favLanguage = obj.favLanguage;
+    this.catchPhrase = obj.catchPhrase;
+  }
 
+  demo(subject){
+    return `Today we are learning about ${subject}`;
+  }
+
+  grade(student, subject){
+    return `${student.name} receives a perfect score on ${subject}`;
+  }
 }
+
+
+var instructor1 = new Instructor({name : "Tony", age : 35, location : "San Francisco", specialty : "functions and databases", favLanguage : "Python and C++", catchPhrase : "It's Tony time."});
+console.log(instructor1);
 
 /*
   TASK 5
@@ -179,14 +196,36 @@ class Instructor {
         + `className` i.e. CS132
         + `favSubjects`. i.e. an array of the student's favorite subjects ['HTML', 'CSS', 'JS']
     - The constructor calls the parent constructor passing to it what it needs.
-    - The constructor should also initialize `previousBackground`, `className` and `favSubjects` properties on the instance.
+    - The constructor should also initialize `previousBackground`, `className`
+    and `favSubjects` properties on the instance.
     - Student instances have the following methods:
-        + `listSubjects` a method that returns all of the student's favSubjects in a single string: `Loving HTML, CSS, JS!`.
-        + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
-        + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
+        + `listSubjects` a method that returns all of the student's favSubjects
+         in a single string: `Loving HTML, CSS, JS!`.
+        + `PRAssignment` a method that receives a subject as an argument and
+        returns `student.name has submitted a PR for {subject}`
+        + `sprintChallenge` similar to PRAssignment but returns `student.name
+        has begun sprint challenge on {subject}`
 */
 
-class Student {
+class Student extends Lambdasian {
+  constructor(obj){
+    super(obj);
+    this.previousBackground = obj.previousBackground;
+    this.className = obj.className;
+    this.favSubjects = obj.favSubjects;
+  }
+
+  listSubjects(){
+    return `Loving ${this.favSubjects}!`;
+  }
+
+  PRAssignment(subject){
+    return `${this.name} has submitted a PR for ${subject}`;
+  }
+
+  sprintChallenge(subject){
+    return `${this.name} has begun sprint challenge on ${subject}`;
+  }
 
 }
 
@@ -198,10 +237,13 @@ class Student {
         + `gradClassName`: i.e. CS1
         + `favInstructor`: i.e. Sean
     - Its constructor calls the parent constructor passing to it what it needs.
-    - The constructor should also initialize `gradClassName` and `favInstructor` properties on the instance.
+    - The constructor should also initialize `gradClassName` and `favInstructor`
+     properties on the instance.
     - ProjectManager instances have the following methods:
-        + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
-        + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
+        + `standUp` a method that takes in a slack channel and returns `{name}
+        announces to {channel}, @channel standy times!`
+        + `debugsCode` a method that takes in a student object and a subject
+        and returns `{name} debugs {student.name}'s code on {subject}`
 */
 
 class ProjectManager {
@@ -210,11 +252,16 @@ class ProjectManager {
 
 /*
   STRETCH PROBLEM (no tests!)
-    - Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
-    - Now that our students have a grade build out a method on the Instructor (this will be used by _BOTH_ instructors and PM's) that will randomly add or subtract points to a student's grade. _Math.random_ will help.
+    - Extend the functionality of the Student by adding a prop called grade
+     and setting it equal to a number between 1-100.
+    - Now that our students have a grade build out a method on the Instructor
+    (this will be used by _BOTH_ instructors and PM's) that will randomly add
+    or subtract points to a student's grade. _Math.random_ will help.
     - Add a graduate method to a student.
-      + This method, when called, will check the grade of the student and see if they're ready to graduate from BloomTech
-      + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
+      + This method, when called, will check the grade of the student and see
+      if they're ready to graduate from BloomTech
+      + If the student's grade is above a 70% let them graduate! Otherwise go
+      back to grading their assignments to increase their score.
 */
 
 
