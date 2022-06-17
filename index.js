@@ -2,7 +2,8 @@
 /*
   EXAMPLE TASK:
     - Write an Airplane class whose constructor initializes `name` from an argument.
-    - All airplanes built with Airplane should initialize with an `isFlying` property of false.
+    - All airplanes built with Airplane should initialize with an `isFlying`
+     property of false.
     - Give airplanes the ability to `.takeOff()` and `.land()`:
         + If a plane takes off, its `isFlying` property gets set to true.
         + If a plane lands, its `isFlying` property gets set to false.
@@ -36,7 +37,8 @@ class Airplane {
     - All instances of Person should also initialize with an empty `stomach` array.
     - Give instances of Person the ability to `.eat("someFood")`:
         + When eating an edible, it should be pushed into the `stomach`.
-        + The `eat` method should have no effect if there are 10 items in the `stomach`.
+        + The `eat` method should have no effect if there are 10 items in the
+        `stomach`.
     - Give instances of Person the ability to `.poop()`:
         + When an instance poops, its `stomach` should empty.
     - Give instances of Person a method `.toString()`:
@@ -44,25 +46,77 @@ class Airplane {
 */
 
 class Person {
-  
+  constructor(name, age){
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
+  }
+  eat(foodItem){
+    if (this.stomach.length < 10){
+      this.stomach.push(foodItem);
+    } else if(this.stomach.length >= 10){
+    }
+  }
+  poop(){
+    this.stomach = [];
+  }
+  toString(){
+    return `${this.name}, ${this.age}`
+  }
 }
+
+let person1 = new Person("Autumn", 27);
+console.log(person1);
+person1.eat("thai food");
+person1.eat("kale chips");
+console.log(person1);
+person1.poop();
+console.log(person1);
 
 /*
   TASK 2
-    - Write a Car class whose constructor initializes `model` and `milesPerGallon`, from 2 arguments.
+    - Write a Car class whose constructor initializes `model` and
+    `milesPerGallon`, from 2 arguments.
     - All instances built with Car:
         + should initialize with a `tank` at 0
         + should initialize with an `odometer` at 0
-    - Give cars the ability to get fueled with a `.fill(gallons)` method. Add the gallons to `tank`.
+    - Give cars the ability to get fueled with a `.fill(gallons)`
+     method. Add the gallons to `tank`.
     - Give cars ability to `.drive(distance)`. The distance driven:
         + Should cause the `odometer` to go up.
-        + Should cause the the `tank` to go down taking `milesPerGallon` into account.
+        + Should cause the the `tank` to go down taking `milesPerGallon`
+        into account.
     - A car which runs out of `fuel` while driving can't drive any more distance:
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
 class Car {
-  
+  constructor(model, mPG){
+    this.model = model;
+    this.milesPerGallon = mPG;
+    this.tank = 0;
+    this.odometer = 0;
+    }
+
+  fill(gallons){
+    this.tank += gallons;
+  }
+
+  drive(distance){
+    var counter = 0;
+    for (let i = 0; i < distance; i++){
+      counter = counter + 1;
+      this.odometer += 1;
+      if (counter === this.milesPerGallon){
+        counter = 0;
+        this.tank -= 1;
+      }
+      if (this.tank === 0){
+        return `I ran out of gas at ${this.odometer} miles!`;
+      }
+    }
+  }
+
 }
 
 /*
@@ -72,15 +126,30 @@ class Car {
         + name
         + age
         + location
-    - Its constructor should initialize `name`, `age` and `location` properties on the instance.
+    - Its constructor should initialize `name`, `age` and `location` properties
+    on the instance.
     - Instances of Lambdasian should be able to `.speak()`:
-        + Speaking should return a phrase `Hello my name is {name}, I am from {location}`.
+        + Speaking should return a phrase `Hello my name is {name},
+        I am from {location}`.
         + {name} and {location} of course come from the instance's own properties.
 */
 
 class Lambdasian {
-  
+  constructor(obj){
+    this.name = obj.name;
+    this.age = obj.age;
+    this.location = obj.location;
+  }
+
+  speak(){
+    return `Hello my name is ${this.name}, I am from ${this.location}`;
+  }
 }
+
+var lambdasian1 = new Lambdasian({name : "Elijah", age : 27, location : "Salt Lake City"})
+
+console.log(lambdasian1);
+console.log(lambdasian1.speak());
 
 /*
   TASK 4
@@ -118,7 +187,7 @@ class Instructor {
 */
 
 class Student {
-   
+
 }
 
 /*
@@ -136,7 +205,7 @@ class Student {
 */
 
 class ProjectManager {
-   
+
 }
 
 /*
